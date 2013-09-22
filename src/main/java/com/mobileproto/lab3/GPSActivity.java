@@ -38,7 +38,7 @@ public class GPSActivity extends Activity {
                         }
                     }.execute(RemoteGeocode.generateUri(gps.getLatitude(), gps.getLongitude()));
                 }
-                button.setText("Refresh");
+            button.setText("Refresh");
             }
         });
 

@@ -100,7 +100,8 @@ public class GPS extends Service implements LocationListener{
     @Override
     public void onLocationChanged(Location location) {
         this.location = location;
-        this.speed = location.getSpeed();
+        if (location.hasSpeed()){
+            this.speed = location.getSpeed();}
     }
 
     @Override

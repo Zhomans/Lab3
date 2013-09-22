@@ -11,6 +11,10 @@ import android.widget.Button;
 import android.widget.TextView;
 
 public class MainActivity extends Activity {
+    double prevLat, prevLong;
+    double prevTime, curTime;
+    double curLat, curLong;
+    double gps_velocity;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,29 +27,37 @@ public class MainActivity extends Activity {
                 "android.location.GPS_ENABLED_CHANGE");
         enableGPS.putExtra("enabled", true);
         sendBroadcast(enableGPS);
-        
+
         final GPS gps = new GPS(this);
 
         final TextView velocity = (TextView) findViewById(R.id.velocity_display);
         final TextView location = (TextView) findViewById(R.id.gps_display);
 
+        prevLat = gps.getLatitude();
+        prevLong = gps.getLongitude();
+        prevTime = SystemClock.uptimeMillis();
+
         Thread vel = new Thread(){
         public void run(){
-            try{
-                while(!isInterrupted()){
-                    runOnUiThread(new Runnable(){
-                        @Override
-                        public void run() {
-                            location.setText("Lat:" + String.valueOf(gps.getLatitude()) + "\n Long:" + String.valueOf(gps.getLongitude()));
-                            Log.e("Latitude",String.valueOf(gps.getLatitude()));
-                            velocity.setText(Double.toString(gps.getSpeeed()) + " deg/s");
-                        }
-                    });
-                    Thread.sleep(200);
-                }
-            } catch (InterruptedException e){}
-        }
-        };vel.start();
+            try {
+            while(!isInterrupted()){
+                runOnUiThread(new Runnable(){
+                    @Override
+                    public void run() {
+                        curLat = gps.getLatitude();
+                        curLong = gps.getLongitude();
+                        curTime = SystemClock.uptimeMillis();
+                        gps_velocity = Math.sqrt(((curLat - prevLat)/(curTime - prevTime))*((curLat - prevLat)/(curTime - prevTime)) + ((curLong - prevLong)/(curTime - prevTime)) * ((curLong - prevLong)/(curTime - prevTime)));
+                        location.setText("Lat:" + String.valueOf(curLat) + "\n Long:" + String.valueOf(curLong));
+                        Log.e("Latitude",  String.valueOf(curLat));
+                        Log.e("Longitude", String.valueOf(curLong));
+                        Log.e("Velocity",  String.valueOf(gps_velocity));
+                        velocity.setText(String.valueOf(gps_velocity) + " deg/s");
+                    }
+                });Thread.sleep(100);
+            }
+            }catch (InterruptedException e){};
+        }};vel.start();
 
         sendPulse.setOnClickListener(new View.OnClickListener() {
             @Override
