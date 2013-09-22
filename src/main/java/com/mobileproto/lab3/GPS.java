@@ -27,13 +27,13 @@ public class GPS extends Service implements LocationListener{
     boolean canGetLocation = false;
 
     Location location;
-
+    double speed;
     double latitude;
     double longitude;
 
-    private static final long MIN_DIST_FOR_UPDATE = 10; //meters
+    private static final long MIN_DIST_FOR_UPDATE = 1; //meters
 
-    private static final long MIN_TIME_FOR_UPDATE = 1000 * 10; //milliseconds
+    private static final long MIN_TIME_FOR_UPDATE = 500; //milliseconds
 
     protected LocationManager lm;
 
@@ -100,6 +100,7 @@ public class GPS extends Service implements LocationListener{
     @Override
     public void onLocationChanged(Location location) {
         this.location = location;
+        this.speed = location.getSpeed();
     }
 
     @Override
@@ -126,7 +127,9 @@ public class GPS extends Service implements LocationListener{
 
         return latitude;
     }
-
+    public double getSpeeed(){
+        return this.speed;
+    }
     public double getLongitude(){
         if(location != null){
             longitude = location.getLongitude();

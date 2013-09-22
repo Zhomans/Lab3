@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Lab3</string>
+    <string name="app_name">Pulse Tag</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
     <string name="flashlight_button">ON/OFF</string>
@@ -11,6 +11,9 @@
     <string name="new_pic_desc">Latest Picture</string>
     <string name="refresh_location">Show Coordinates</string>
     <string name="open_gps">GPS</string>
+    <string name="velocity_label">Velocity</string>
+    <string name="gps_label">Location</string>
+    <string name="pulse_button">Pulse</string>
 
 
 </resources>
