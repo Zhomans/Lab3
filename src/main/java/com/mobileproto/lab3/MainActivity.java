@@ -47,12 +47,12 @@ public class MainActivity extends Activity {
                         curLat = gps.getLatitude();
                         curLong = gps.getLongitude();
                         curTime = SystemClock.uptimeMillis();
-                        gps_velocity = Math.sqrt(((curLat - prevLat)/(curTime - prevTime))*((curLat - prevLat)/(curTime - prevTime)) + ((curLong - prevLong)/(curTime - prevTime)) * ((curLong - prevLong)/(curTime - prevTime)));
+                        gps_velocity = Math.sqrt((curLat-prevLat)*(curLat-prevLat)+(curLong-prevLong)*(curLong-prevLong))*6371000.0/((curTime-prevTime)/1000.0);
                         location.setText("Lat:" + String.valueOf(curLat) + "\n Long:" + String.valueOf(curLong));
                         Log.e("Latitude",  String.valueOf(curLat));
                         Log.e("Longitude", String.valueOf(curLong));
                         Log.e("Velocity",  String.valueOf(gps_velocity));
-                        velocity.setText(String.valueOf(gps_velocity) + " deg/s");
+                        velocity.setText(String.valueOf(gps_velocity) + " m/s");
                     }
                 });Thread.sleep(100);
             }
