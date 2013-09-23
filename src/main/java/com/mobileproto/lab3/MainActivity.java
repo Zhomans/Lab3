@@ -98,19 +98,19 @@ public class MainActivity extends Activity {
 
                                 gps_velocity = convert(prevLat, prevLong, curLat,curLong);//Math.sqrt((curLat-prevLat)*(curLat-prevLat)+(curLong-prevLong)*(curLong-prevLong))*6371000.0/((curTime-prevTime)/1000.0);
 
-                                //Log.e("Latitude",  String.valueOf(curLat));
-                                //Log.e("Longitude", String.valueOf(curLong));
-                                //Log.e("Velocity",  String.valueOf(gps_velocity));
+                                Log.e("Latitude",  String.valueOf(curLat));
+                                Log.e("Longitude", String.valueOf(curLong));
+                                Log.e("Velocity",  String.valueOf(gps_velocity));
 
                                 location.setText("Lat:" + String.valueOf(curLat) + "\n Long:" + String.valueOf(curLong));
                                 velocity.setText(String.valueOf(gps_velocity) + " m/s");
 
-                                sendJson(curLat, curLong, gps_velocity,phoneName);
+                                //sendJson(curLat, curLong, gps_velocity,phoneName);
 
                                 prevLat = curLat;
                                 prevLong = curLong;
                                 prevTime = curTime;
-                            }});Thread.sleep(100);
+                            }});Thread.sleep(1000);
                         }
                     }catch (InterruptedException e){Log.e("ServerThread","Stopped");}
                 }};Log.e("ServerThread","Successfully created server thread.");vel.start();
