@@ -10,15 +10,15 @@ def get():
 	print "Hii"
 	data = request.args.get('phone','default')
 	print "Hiii"
-	total = "|".join(["-".join(otherData) for phone,otherData in datalist.items() if data != phone])
+	total = "|".join(["&".join(otherData) for phone,otherData in datalist.items() if data != phone])
 	print "Hiiii"
 	return total
 
 @app.route('/post')
 def post():
-	data = request.args.get('data','default').split("-")
+	data = request.args.get('data','default').split("&")
 	datalist[data[0]] = data[1:]
 	return "Success"
 
 if __name__ == "__main__":
-	app.run()
+	app.run(host='0.0.0.0')

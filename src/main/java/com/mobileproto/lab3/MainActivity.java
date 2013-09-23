@@ -15,6 +15,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -28,78 +32,88 @@ public class MainActivity extends Activity {
     double prevTime, curTime;
     double curLat, curLong;
     double gps_velocity;
-    boolean kill;
+    Thread vel;
+    HttpClient httpclient = new DefaultHttpClient();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        Log.e("View","Successfully set Content View");
+        /*
         try{StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);}catch (Exception e){}
+        */
 
+        Log.e("Policy","Successfully set Policy");
         //Go to Second Activity: Map
         Button goMap = (Button) findViewById(R.id.map_button);
         goMap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                kill = true;
+                vel.interrupt(); // Interrupts the updates.
                 Intent i = new Intent(getApplicationContext(), PulseActivity.class);
                 startActivity(i);
             }
-        });
+        });Log.e("Map Button","Successfully Initialized");
 
         // explicitly enable GPS
         Intent enableGPS = new Intent(
                 "android.location.GPS_ENABLED_CHANGE");
         enableGPS.putExtra("enabled", true);
         sendBroadcast(enableGPS);
+        Log.e("GPS","Successfully Enabled");
 
         //Initialize GPS and grab views
         final GPS gps = new GPS(this);
         final TextView velocity = (TextView) findViewById(R.id.velocity_display);
         final TextView location = (TextView) findViewById(R.id.gps_display);
+        Log.e("GPS","Successfully Initialized");
 
         //Grab Initial Data
         prevLat = gps.getLatitude();
         prevLong = gps.getLongitude();
         prevTime = SystemClock.uptimeMillis();
+        Log.e("GPS","Successfully Grabbed Data");
 
         //Thread
-        Thread vel = new Thread(){
+        vel = new Thread(){
             public void run(){
                 try {
-                    while(kill){
+                    while(!isInterrupted()){
                         runOnUiThread( new Runnable() {
                             @Override
                             public void run() {
                                 curLat = gps.getLatitude();
                                 curLong = gps.getLongitude();
-                                curTime = SystemClock.uptimeMillis();
+                                curTime = SystemClock.uptimeMillis() + 120;
 
+                                gps_velocity = convert(prevLat, prevLong, curLat,curLong);//Math.sqrt((curLat-prevLat)*(curLat-prevLat)+(curLong-prevLong)*(curLong-prevLong))*6371000.0/((curTime-prevTime)/1000.0);
 
-                                gps_velocity = Math.sqrt((curLat-prevLat)*(curLat-prevLat)+(curLong-prevLong)*(curLong-prevLong))*6371000.0/((curTime-prevTime)/1000.0);
+                                //Log.e("Latitude",  String.valueOf(curLat));
+                                //Log.e("Longitude", String.valueOf(curLong));
+                                //Log.e("Velocity",  String.valueOf(gps_velocity));
 
                                 location.setText("Lat:" + String.valueOf(curLat) + "\n Long:" + String.valueOf(curLong));
-                                Log.e("Latitude",  String.valueOf(curLat));
-                                Log.e("Longitude", String.valueOf(curLong));
-                                Log.e("Velocity",  String.valueOf(gps_velocity));
-
                                 velocity.setText(String.valueOf(gps_velocity) + " m/s");
+
+                                //Update website with information here
+                                TelephonyManager tMgr =(TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
+                                String phoneName = tMgr.getDeviceId();
+
+                                prevLat = curLat;
+                                prevLong = curLong;
+                                prevTime = curTime;
+                                try {
+                                    HttpPost url = new HttpPost("http://10.41.24.16:5000/post?data" + phoneName + "&" + String.valueOf(curLat) + "&" + String.valueOf(curLong) + "&" + String.valueOf(gps_velocity));
+                                    httpclient.execute(url);
+                                    Log.e("URL",String.valueOf(url));
+                                }catch (Exception e) {
+                                    e.printStackTrace();
+                                }
                             }});Thread.sleep(100);
-
-                            //Update website with information here
-                            TelephonyManager tMgr =(TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
-                            String phoneName = tMgr.getDeviceId();
-
-                            try {
-                                URL url = new URL("http://10.41.88.218:5000/post?data" + phoneName + "-" + String.valueOf(curLat) + "-" + String.valueOf(curLong) + "-" + String.valueOf(gps_velocity));
-                                url.openConnection();
-                            }catch (Exception e) {
-                                e.printStackTrace();
-                            }
                         }
-                    }catch (InterruptedException e){Log.v("ServerThread","Stopped");}
-                }};vel.start();
+                    }catch (InterruptedException e){Log.e("ServerThread","Stopped");}
+                }};Log.e("ServerThread","Successfully created server thread.");vel.start();
     }
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -117,5 +131,17 @@ public class MainActivity extends Activity {
             return true;
         }
         return false;
+    }
+
+    public double convert(double lat1, double lon1, double lat2, double lon2){  // generally used geo measurement function
+        double R = 6378.137; // Radius of earth in KM
+        double dLat = (lat2 - lat1) * Math.PI / 180;
+        double dLon = (lon2 - lon1) * Math.PI / 180;
+        double a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+                Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+                        Math.sin(dLon/2) * Math.sin(dLon/2);
+        double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+        double d = R * c;
+        return d * 1000; // meters
     }
 }

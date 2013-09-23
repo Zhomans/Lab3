@@ -34,9 +34,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.mobileproto.lab3.MicrophoneActivity"/>
-        <activity
-            android:name="com.mobileproto.lab3.InternetActivity"/>
+            android:name="com.mobileproto.lab3.PulseActivity"/>
     </application>
 
 </manifest>
