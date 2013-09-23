@@ -1,24 +1,27 @@
 from flask import Flask
 from flask import request
+from flask import json
 global datalist
 
 app = Flask(__name__)
 datalist = dict()
 
-@app.route('/get')
+@app.route('/get', methods = ['GET'])
 def get():
-	print "Hii"
 	data = request.args.get('phone','default')
-	print "Hiii"
 	total = "|".join(["&".join(otherData) for phone,otherData in datalist.items() if data != phone])
-	print "Hiiii"
 	return total
 
 @app.route('/post')
 def post():
-	data = request.args.get('data','default').split("&")
-	datalist[data[0]] = data[1:]
-	return "Success"
+	print "Here"
+	if request.method == 'POST':
+		data = json.loads(request.data)
+		datalist[data['phone']] = [data['lat'],data['lon'],data['vel']] 
+		return "Success"
+	else:
+		print "It's okay android."
+		return "You sent nothing, fool."
 
 if __name__ == "__main__":
 	app.run(host='0.0.0.0')

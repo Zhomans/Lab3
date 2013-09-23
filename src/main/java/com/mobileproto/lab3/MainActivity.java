@@ -14,10 +14,17 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicHeader;
+import org.apache.http.params.HttpConnectionParams;
+import org.apache.http.protocol.HTTP;
+import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -33,7 +40,8 @@ public class MainActivity extends Activity {
     double curLat, curLong;
     double gps_velocity;
     Thread vel;
-    HttpClient httpclient = new DefaultHttpClient();
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,6 +87,7 @@ public class MainActivity extends Activity {
         vel = new Thread(){
             public void run(){
                 try {
+                    final String phoneName = ((TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE)).getDeviceId();
                     while(!isInterrupted()){
                         runOnUiThread( new Runnable() {
                             @Override
@@ -96,20 +105,11 @@ public class MainActivity extends Activity {
                                 location.setText("Lat:" + String.valueOf(curLat) + "\n Long:" + String.valueOf(curLong));
                                 velocity.setText(String.valueOf(gps_velocity) + " m/s");
 
-                                //Update website with information here
-                                TelephonyManager tMgr =(TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
-                                String phoneName = tMgr.getDeviceId();
+                                sendJson(curLat, curLong, gps_velocity,phoneName);
 
                                 prevLat = curLat;
                                 prevLong = curLong;
                                 prevTime = curTime;
-                                try {
-                                    HttpPost url = new HttpPost("http://10.41.24.16:5000/post?data" + phoneName + "&" + String.valueOf(curLat) + "&" + String.valueOf(curLong) + "&" + String.valueOf(gps_velocity));
-                                    httpclient.execute(url);
-                                    Log.e("URL",String.valueOf(url));
-                                }catch (Exception e) {
-                                    e.printStackTrace();
-                                }
                             }});Thread.sleep(100);
                         }
                     }catch (InterruptedException e){Log.e("ServerThread","Stopped");}
@@ -119,6 +119,28 @@ public class MainActivity extends Activity {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
+    }
+
+    protected void sendJson(final double lat, final double lon, final double vel, String phoneName){
+        HttpClient client = new DefaultHttpClient();
+        HttpConnectionParams.setConnectionTimeout(client.getParams(),5000);
+        HttpResponse response;
+        JSONObject json = new JSONObject();
+
+        try {
+            HttpPost post = new HttpPost("http://10.41.24.16/post");
+            json.put("phone", phoneName);
+            json.put("lat",lat);
+            json.put("lon",lon);
+            json.put("vel",vel);
+            StringEntity se = new StringEntity(json.toString());
+            se.setContentType(new BasicHeader(HTTP.CONTENT_TYPE,"application/json"));
+            post.setEntity(se);
+            response = client.execute(post);
+        }catch (Exception e) {
+            e.printStackTrace();
+            Log.e("Server", "Cannot Establish Connection");
+        }
     }
 
     public boolean isNetworkAvailable() {
