@@ -46,16 +46,13 @@
             android:layout_alignTop="@+id/velocity_display"
             android:layout_alignRight="@+id/gps_label"
             android:layout_toRightOf="@+id/pulse_button"></TextView>
-<View android:layout_width="fill_parent"
-    android:layout_height="2dp"
-    android:background="@color/white"
-        android:layout_below="@+id/gps_display"/>
-<Button
+
+    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/pulse_button"
+        android:text="@string/map_button"
         android:textSize="40dp"
-        android:id="@+id/pulse_button"
+        android:id="@+id/map_button"
         android:layout_alignParentBottom="true"
         android:layout_centerInParent="true"/>
 </RelativeLayout>

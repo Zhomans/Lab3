@@ -31,9 +31,9 @@ public class GPS extends Service implements LocationListener{
     double latitude;
     double longitude;
 
-    private static final long MIN_DIST_FOR_UPDATE = 1; //meters
+    private static final long MIN_DIST_FOR_UPDATE = 0; //meters
 
-    private static final long MIN_TIME_FOR_UPDATE = 500; //milliseconds
+    private static final long MIN_TIME_FOR_UPDATE = 1000; //milliseconds
 
     protected LocationManager lm;
 

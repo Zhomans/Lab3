@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.os.StrictMode;
 import android.os.SystemClock;
+import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
@@ -36,7 +37,7 @@ public class MainActivity extends Activity {
         StrictMode.setThreadPolicy(policy);
         }catch (Exception e){}
 
-        Button sendPulse = (Button) findViewById(R.id.pulse_button);
+        Button goMap = (Button) findViewById(R.id.map_button);
 
         // explicitly enable GPS
         Intent enableGPS = new Intent(
@@ -52,17 +53,15 @@ public class MainActivity extends Activity {
         prevLong = gps.getLongitude();
         prevTime = SystemClock.uptimeMillis();
 
-
-
-        sendPulse.setOnClickListener(new View.OnClickListener() {
+        goMap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(gps.canGetLocation()){
-                    location.setText("Lat:" + String.valueOf(gps.getLatitude()) + "\n Long:" + String.valueOf(gps.getLongitude()));}
-            };
+                Intent i = new Intent(getApplicationContext(), PulseActivity.class);
+                startActivity(i);
+            }
+
+            ;
         });
-
-
 
         Thread vel = new Thread(){
             public void run(){
@@ -76,59 +75,33 @@ public class MainActivity extends Activity {
                         gps_velocity = Math.sqrt((curLat-prevLat)*(curLat-prevLat)+(curLong-prevLong)*(curLong-prevLong))*6371000.0/((curTime-prevTime)/1000.0);
 
                         location.setText("Lat:" + String.valueOf(curLat) + "\n Long:" + String.valueOf(curLong));
-                        Log.e("Latitude",  String.valueOf(curLat));
-                        Log.e("Longitude", String.valueOf(curLong));
-                        Log.e("Velocity",  String.valueOf(gps_velocity));
+//                        Log.e("Latitude",  String.valueOf(curLat));
+//                        Log.e("Longitude", String.valueOf(curLong));
+//                        Log.e("Velocity",  String.valueOf(gps_velocity));
 
                         velocity.setText(String.valueOf(gps_velocity) + " m/s");
 
-                    }Thread.sleep(100);
+                        //Update website with information here
+                        TelephonyManager tMgr =(TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
+                        String phoneName = tMgr.getDeviceId();
+
+                        try {
+                            URL url = new URL("10.41.88.218:5000/post?data" + phoneName + "-" + String.valueOf(curLat) + "-" + String.valueOf(curLong) + "-" + String.valueOf(gps_velocity));
+                            url.openConnection();
+                        }catch (Exception e) {
+                            e.printStackTrace();
+                        }
+
+                    }Thread.sleep(1000);
                 }catch (InterruptedException e){};
             }};vel.start();
 
-        Thread server = new Thread(){
-            public void run(){
-                try {
-                    URL url = new URL("http://www.vogella.com");
-                    final HttpURLConnection con = (HttpURLConnection) url.openConnection();
-                    while (!isInterrupted())
-                       {readData(con.getInputStream());}
-                }catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }};if(isNetworkAvailable()){server.start();}
+
     }
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
-    }
-    public ArrayList<Double> readData(InputStream in){
-        BufferedReader reader = null;
-        int prev = 0;
-        ArrayList<Double> data = new ArrayList<Double>();
-        try{
-            reader = new BufferedReader(new InputStreamReader(in));
-            String line = "";
-            while ((line = reader.readLine())!=null){
-                for (int i = 0; i < line.length(); i++){
-                    if (line.charAt(i) == '-'  || line.charAt(i) == '|'){
-                        data.add(Double.parseDouble(line.substring(prev,i)));prev = i;
-                    }
-                }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            if (reader != null) {
-                try {
-                    reader.close();
-                }catch (IOException e){
-                    e.printStackTrace();
-                }
-            }
-        }
-        return data;
     }
 
     public boolean isNetworkAvailable() {

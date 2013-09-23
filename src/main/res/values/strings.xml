@@ -11,9 +11,10 @@
     <string name="new_pic_desc">Latest Picture</string>
     <string name="refresh_location">Show Coordinates</string>
     <string name="open_gps">GPS</string>
-    <string name="velocity_label">Velocity</string>
-    <string name="gps_label">Location</string>
+    <string name="velocity_label">My Velocity</string>
+    <string name="gps_label">My Location</string>
     <string name="pulse_button">Pulse</string>
+    <string name="map_button">Map</string>
 
 
 </resources>
