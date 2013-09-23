@@ -28,18 +28,25 @@ public class MainActivity extends Activity {
     double prevTime, curTime;
     double curLat, curLong;
     double gps_velocity;
+    boolean kill;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        /*
-        try{
-        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-        StrictMode.setThreadPolicy(policy);
-        }catch (Exception e){}
-        */
 
+        try{StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);}catch (Exception e){}
+
+        //Go to Second Activity: Map
         Button goMap = (Button) findViewById(R.id.map_button);
+        goMap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                kill = true;
+                Intent i = new Intent(getApplicationContext(), PulseActivity.class);
+                startActivity(i);
+            }
+        });
 
         // explicitly enable GPS
         Intent enableGPS = new Intent(
@@ -47,26 +54,21 @@ public class MainActivity extends Activity {
         enableGPS.putExtra("enabled", true);
         sendBroadcast(enableGPS);
 
+        //Initialize GPS and grab views
         final GPS gps = new GPS(this);
         final TextView velocity = (TextView) findViewById(R.id.velocity_display);
         final TextView location = (TextView) findViewById(R.id.gps_display);
 
+        //Grab Initial Data
         prevLat = gps.getLatitude();
         prevLong = gps.getLongitude();
         prevTime = SystemClock.uptimeMillis();
 
-        goMap.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(getApplicationContext(), PulseActivity.class);
-                startActivity(i);
-            }
-        });
-
+        //Thread
         Thread vel = new Thread(){
             public void run(){
                 try {
-                    while(!isInterrupted()){
+                    while(kill){
                         runOnUiThread( new Runnable() {
                             @Override
                             public void run() {
@@ -96,10 +98,8 @@ public class MainActivity extends Activity {
                                 e.printStackTrace();
                             }
                         }
-                    }catch (InterruptedException e){};
+                    }catch (InterruptedException e){Log.v("ServerThread","Stopped");}
                 }};vel.start();
-
-
     }
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
