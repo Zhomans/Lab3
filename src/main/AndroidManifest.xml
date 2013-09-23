@@ -7,8 +7,7 @@
     <uses-sdk
         android:minSdkVersion="7"
         android:targetSdkVersion="18" />
-    <uses-permission
-        android:name="android.permission.FLASHLIGHT"/>
+
     <uses-permission
         android:name="android.permission.INTERNET"/>
     <uses-permission
@@ -16,9 +15,7 @@
     <uses-permission
         android:name="android.permission.ACCESS_FINE_LOCATION"/>
     <uses-permission
-        android:name="android.permission.CAMERA"/>
-    <uses-permission2
-        android:name="android.permission.RECORD_AUDIO"/>
+            android:name="android.permission.ACCESS_NETWORK_STATE"/>
 
     <application
         android:allowBackup="true"
@@ -35,11 +32,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.mobileproto.lab3.GPSActivity"/>
-        <activity
             android:name="com.mobileproto.lab3.MicrophoneActivity"/>
-        <activity
-            android:name="com.mobileproto.lab3.FlashLightActivity"/>
         <activity
             android:name="com.mobileproto.lab3.InternetActivity"/>
     </application>
