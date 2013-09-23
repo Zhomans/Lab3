@@ -32,10 +32,12 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        /*
         try{
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
         }catch (Exception e){}
+        */
 
         Button goMap = (Button) findViewById(R.id.map_button);
 
@@ -59,42 +61,43 @@ public class MainActivity extends Activity {
                 Intent i = new Intent(getApplicationContext(), PulseActivity.class);
                 startActivity(i);
             }
-
-            ;
         });
 
         Thread vel = new Thread(){
             public void run(){
                 try {
                     while(!isInterrupted()){
-                        curLat = gps.getLatitude();
-                        curLong = gps.getLongitude();
-                        curTime = SystemClock.uptimeMillis();
+                        runOnUiThread( new Runnable() {
+                            @Override
+                            public void run() {
+                                curLat = gps.getLatitude();
+                                curLong = gps.getLongitude();
+                                curTime = SystemClock.uptimeMillis();
 
 
-                        gps_velocity = Math.sqrt((curLat-prevLat)*(curLat-prevLat)+(curLong-prevLong)*(curLong-prevLong))*6371000.0/((curTime-prevTime)/1000.0);
+                                gps_velocity = Math.sqrt((curLat-prevLat)*(curLat-prevLat)+(curLong-prevLong)*(curLong-prevLong))*6371000.0/((curTime-prevTime)/1000.0);
 
-                        location.setText("Lat:" + String.valueOf(curLat) + "\n Long:" + String.valueOf(curLong));
-//                        Log.e("Latitude",  String.valueOf(curLat));
-//                        Log.e("Longitude", String.valueOf(curLong));
-//                        Log.e("Velocity",  String.valueOf(gps_velocity));
+                                location.setText("Lat:" + String.valueOf(curLat) + "\n Long:" + String.valueOf(curLong));
+                                Log.e("Latitude",  String.valueOf(curLat));
+                                Log.e("Longitude", String.valueOf(curLong));
+                                Log.e("Velocity",  String.valueOf(gps_velocity));
 
-                        velocity.setText(String.valueOf(gps_velocity) + " m/s");
+                                velocity.setText(String.valueOf(gps_velocity) + " m/s");
+                            }});Thread.sleep(100);
 
-                        //Update website with information here
-                        TelephonyManager tMgr =(TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
-                        String phoneName = tMgr.getDeviceId();
+                            //Update website with information here
+                            TelephonyManager tMgr =(TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
+                            String phoneName = tMgr.getDeviceId();
 
-                        try {
-                            URL url = new URL("10.41.88.218:5000/post?data" + phoneName + "-" + String.valueOf(curLat) + "-" + String.valueOf(curLong) + "-" + String.valueOf(gps_velocity));
-                            url.openConnection();
-                        }catch (Exception e) {
-                            e.printStackTrace();
+                            try {
+                                URL url = new URL("http://10.41.88.218:5000/post?data" + phoneName + "-" + String.valueOf(curLat) + "-" + String.valueOf(curLong) + "-" + String.valueOf(gps_velocity));
+                                url.openConnection();
+                            }catch (Exception e) {
+                                e.printStackTrace();
+                            }
                         }
-
-                    }Thread.sleep(1000);
-                }catch (InterruptedException e){};
-            }};vel.start();
+                    }catch (InterruptedException e){};
+                }};vel.start();
 
 
     }

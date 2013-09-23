@@ -11,6 +11,7 @@
     </shared>
   </component>
   <component name="AndroidLogFilters">
+    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="com.mobileproto.lab" />
     <option name="TOOL_WINDOW_LOG_LEVEL" value="INFO" />
   </component>
   <component name="ChangeListManager">
@@ -24,6 +25,9 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
+  <component name="CompilerWorkspaceConfiguration">
+    <option name="USE_COMPILE_SERVER" value="false" />
+  </component>
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
   </component>
@@ -83,10 +87,8 @@
             <state />
           </provider>
           <provider selected="true" editor-type-id="text-editor">
-            <state line="43" column="41" selection-start="1696" selection-end="1696" vertical-scroll-proportion="-9.965517" vertical-offset="356" max-vertical-offset="1050">
-              <folding>
-                <element signature="e#2039#2059#0" expanded="true" />
-              </folding>
+            <state line="43" column="41" selection-start="1696" selection-end="1696" vertical-scroll-proportion="0.0" vertical-offset="756" max-vertical-offset="1260">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -97,10 +99,8 @@
             <state />
           </provider>
           <provider selected="true" editor-type-id="text-editor">
-            <state line="16" column="34" selection-start="598" selection-end="598" vertical-scroll-proportion="-8.275862" vertical-offset="0" max-vertical-offset="390">
-              <folding>
-                <element signature="e#505#527#0" expanded="true" />
-              </folding>
+            <state line="16" column="34" selection-start="598" selection-end="598" vertical-scroll-proportion="0.0" vertical-offset="270" max-vertical-offset="468">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -108,12 +108,13 @@
       <file leaf-file-name="MainActivity.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/mobileproto/lab3/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="88" column="149" selection-start="3362" selection-end="3362" vertical-scroll-proportion="0.69584244" vertical-offset="687" max-vertical-offset="1545">
+            <state line="62" column="13" selection-start="2059" selection-end="2059" vertical-scroll-proportion="0.5655914" vertical-offset="475" max-vertical-offset="1908">
               <folding>
-                <element signature="e#1809#2062#0" expanded="true" />
-                <element signature="e#2036#2037#0" expanded="true" />
-                <element signature="e#2087#3682#0" expanded="true" />
-                <element signature="e#3680#3681#0" expanded="true" />
+                <element signature="e#1831#2069#0" expanded="true" />
+                <element signature="e#2094#3983#0" expanded="true" />
+                <element signature="e#2245#3189#0" expanded="true" />
+                <element signature="e#3187#3188#0" expanded="true" />
+                <element signature="e#3981#3982#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -122,7 +123,7 @@
       <file leaf-file-name="GPS.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/mobileproto/lab3/GPS.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="33" column="53" selection-start="812" selection-end="812" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2490">
+            <state line="33" column="53" selection-start="812" selection-end="812" vertical-scroll-proportion="0.0" vertical-offset="576" max-vertical-offset="3258">
               <folding />
             </state>
           </provider>
@@ -131,12 +132,8 @@
       <file leaf-file-name="PulseActivity.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/mobileproto/lab3/PulseActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="119" column="4" selection-start="3809" selection-end="4263" vertical-scroll-proportion="0.0" vertical-offset="1317" max-vertical-offset="2040">
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#1201#1650#0" expanded="true" />
-                <element signature="e#1638#1639#0" expanded="true" />
-              </folding>
+            <state line="119" column="4" selection-start="3809" selection-end="4263" vertical-scroll-proportion="0.0" vertical-offset="2124" max-vertical-offset="2466">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -144,7 +141,7 @@
       <file leaf-file-name="strings.xml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/res/values/strings.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="16" column="33" selection-start="758" selection-end="758" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="390">
+            <state line="16" column="33" selection-start="758" selection-end="758" vertical-scroll-proportion="0.0" vertical-offset="270" max-vertical-offset="468">
               <folding />
             </state>
           </provider>
@@ -171,10 +168,9 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="64" />
-    <option name="y" value="-4" />
-    <option name="width" value="1537" />
-    <option name="height" value="905" />
+    <option name="y" value="24" />
+    <option name="width" value="1600" />
+    <option name="height" value="876" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -202,8 +198,8 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -306,8 +302,8 @@
     <property name="restartRequiresConfirmation" value="true" />
     <property name="MemberChooser.showClasses" value="true" />
     <property name="GoToClass.includeLibraries" value="false" />
-    <property name="options.searchVisible" value="true" />
     <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="options.searchVisible" value="true" />
   </component>
   <component name="RunManager" selected="Android Application.main">
     <configuration default="true" type="Remote" factoryName="Remote">
@@ -446,33 +442,33 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="64" y="-4" width="1537" height="905" extended-state="6" />
-    <editor active="false" />
+    <frame x="0" y="24" width="1600" height="876" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32996634" sideWeight="0.6706507" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32934928" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32934928" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.46754968" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32934928" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Android" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3359894" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32934928" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.46754968" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32934928" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.11919192" sideWeight="0.66401064" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32934928" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.17438868" sideWeight="0.5324503" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32847682" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32996634" sideWeight="0.6706507" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32934928" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -537,14 +533,69 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/main/res/layout/activity_main.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="43" column="41" selection-start="1696" selection-end="1696" vertical-scroll-proportion="0.0" vertical-offset="774" max-vertical-offset="1260">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/res/layout/activity_map.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="16" column="34" selection-start="598" selection-end="598" vertical-scroll-proportion="0.0" vertical-offset="270" max-vertical-offset="468">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/mobileproto/lab3/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="88" column="149" selection-start="3362" selection-end="3362" vertical-scroll-proportion="0.0" vertical-offset="1188" max-vertical-offset="1854">
+          <folding>
+            <element signature="e#1831#2069#0" expanded="true" />
+            <element signature="e#2094#3983#0" expanded="true" />
+            <element signature="e#2245#3189#0" expanded="true" />
+            <element signature="e#3187#3188#0" expanded="true" />
+            <element signature="e#3981#3982#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/mobileproto/lab3/GPS.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="33" column="53" selection-start="812" selection-end="812" vertical-scroll-proportion="0.0" vertical-offset="576" max-vertical-offset="3258">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/mobileproto/lab3/PulseActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="119" column="4" selection-start="3809" selection-end="4263" vertical-scroll-proportion="0.0" vertical-offset="2124" max-vertical-offset="2466">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/res/values/strings.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="16" column="33" selection-start="758" selection-end="758" vertical-scroll-proportion="0.0" vertical-offset="270" max-vertical-offset="468">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/mobileproto/lab3/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="51" column="30" selection-start="1682" selection-end="1682" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1965">
           <folding>
-            <element signature="e#1809#2062#0" expanded="true" />
-            <element signature="e#2036#2037#0" expanded="true" />
-            <element signature="e#2087#3682#0" expanded="true" />
-            <element signature="e#3680#3681#0" expanded="true" />
+            <element signature="e#1831#2069#0" expanded="true" />
+            <element signature="e#2094#3983#0" expanded="true" />
+            <element signature="e#2245#3189#0" expanded="true" />
+            <element signature="e#3187#3188#0" expanded="true" />
+            <element signature="e#3981#3982#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -553,10 +604,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="36" column="30" selection-start="1155" selection-end="1155" vertical-scroll-proportion="0.0" vertical-offset="405" max-vertical-offset="1125">
           <folding>
-            <element signature="e#1809#2062#0" expanded="true" />
-            <element signature="e#2036#2037#0" expanded="true" />
-            <element signature="e#2087#3682#0" expanded="true" />
-            <element signature="e#3680#3681#0" expanded="true" />
+            <element signature="e#1831#2069#0" expanded="true" />
+            <element signature="e#2094#3983#0" expanded="true" />
+            <element signature="e#2245#3189#0" expanded="true" />
+            <element signature="e#3187#3188#0" expanded="true" />
+            <element signature="e#3981#3982#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -573,10 +625,8 @@
         <state />
       </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state line="43" column="41" selection-start="1696" selection-end="1696" vertical-scroll-proportion="-9.965517" vertical-offset="356" max-vertical-offset="1050">
-          <folding>
-            <element signature="e#2039#2059#0" expanded="true" />
-          </folding>
+        <state line="43" column="41" selection-start="1696" selection-end="1696" vertical-scroll-proportion="0.0" vertical-offset="756" max-vertical-offset="1260">
+          <folding />
         </state>
       </provider>
     </entry>
@@ -592,21 +642,15 @@
         <state />
       </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="34" selection-start="598" selection-end="598" vertical-scroll-proportion="-8.275862" vertical-offset="0" max-vertical-offset="390">
-          <folding>
-            <element signature="e#505#527#0" expanded="true" />
-          </folding>
+        <state line="16" column="34" selection-start="598" selection-end="598" vertical-scroll-proportion="0.0" vertical-offset="270" max-vertical-offset="468">
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/mobileproto/lab3/PulseActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="119" column="4" selection-start="3809" selection-end="4263" vertical-scroll-proportion="0.0" vertical-offset="1317" max-vertical-offset="2040">
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1201#1650#0" expanded="true" />
-            <element signature="e#1638#1639#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -619,12 +663,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/mobileproto/lab3/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="88" column="149" selection-start="3362" selection-end="3362" vertical-scroll-proportion="0.69584244" vertical-offset="687" max-vertical-offset="1545">
+        <state line="62" column="13" selection-start="2059" selection-end="2059" vertical-scroll-proportion="0.5655914" vertical-offset="475" max-vertical-offset="1908">
           <folding>
-            <element signature="e#1809#2062#0" expanded="true" />
-            <element signature="e#2036#2037#0" expanded="true" />
-            <element signature="e#2087#3682#0" expanded="true" />
-            <element signature="e#3680#3681#0" expanded="true" />
+            <element signature="e#1831#2069#0" expanded="true" />
+            <element signature="e#2094#3983#0" expanded="true" />
+            <element signature="e#2245#3189#0" expanded="true" />
+            <element signature="e#3187#3188#0" expanded="true" />
+            <element signature="e#3981#3982#0" expanded="true" />
           </folding>
         </state>
       </provider>
