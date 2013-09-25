@@ -104,13 +104,14 @@ public class MainActivity extends Activity {
 
                                 location.setText("Lat:" + String.valueOf(curLat) + "\n Long:" + String.valueOf(curLong));
                                 velocity.setText(String.valueOf(gps_velocity) + " m/s");
-
+                                location.invalidate();
+                                velocity.invalidate();
                                 //sendJson(curLat, curLong, gps_velocity,phoneName);
 
                                 prevLat = curLat;
                                 prevLong = curLong;
                                 prevTime = curTime;
-                            }});Thread.sleep(1000);
+                            }});Thread.sleep(100);
                         }
                     }catch (InterruptedException e){Log.e("ServerThread","Stopped");}
                 }};Log.e("ServerThread","Successfully created server thread.");vel.start();
